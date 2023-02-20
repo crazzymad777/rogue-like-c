@@ -8,7 +8,10 @@ int game_cycle() {
 	do {
 		clear();
 
-		move(LINES / 2, (COLS / 2 - 40 / 2) + 20);
+		move(LINES / 2 - y, COLS / 2 - x);
+		printw("x");
+
+		move(LINES / 2, COLS / 2);
 		printw("@");
 
 		refresh();
