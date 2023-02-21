@@ -7,10 +7,11 @@ int game_cycle() {
 	int ch;
 
 	WINDOW* info = newwin(LINES, 20, 0, 0);
-	WINDOW* area = newwin(LINES, COLS - 20, 0, 20);
+	WINDOW* area = newwin(LINES - 5, COLS - 20, 0, 20);
+	WINDOW* interactions = newwin(5, COLS - 20, LINES-5, 20);
 
 	do {
-		clear();
+		// clear();
 
 		wborder(info, 0, 0, 0, 0, 0, 0, 0, 0);
 		mvwprintw(info, 1, 1, "Level: 1");
@@ -19,10 +20,16 @@ int game_cycle() {
 		wrefresh(info);
 
 		wclear(area);
-		mvwprintw(area, LINES / 2 - y, (COLS - 20) / 2 - x, "x");
-		mvwprintw(area, LINES / 2, (COLS - 20) / 2, "@");
+		mvwprintw(area, ( LINES - 5 ) / 2 - y, (COLS - 20) / 2 - x, "x");
+		mvwprintw(area, ( LINES - 5 ) / 2, (COLS - 20) / 2, "@");
 		wborder(area, 0, 0, 0, 0, 0, 0, 0, 0);
 		wrefresh(area);
+
+		wclear(interactions);
+		mvwprintw(interactions, 1, 1, "(O) open");
+		mvwprintw(interactions, 2, 1, "(T) talk");
+		wborder(interactions, 0, 0, 0, 0, 0, 0, 0, 0);
+		wrefresh(interactions);
 
 		// move(LINES / 2 - y, COLS / 2 - x);
 		// printw("x");
@@ -48,6 +55,7 @@ int game_cycle() {
 		// refresh();
 	} while (ch != 'q' && !feof(stdin));
 
+	delwin(interactions);
 	delwin(info);
 	delwin(area);
 
