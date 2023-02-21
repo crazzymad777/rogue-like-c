@@ -19,9 +19,9 @@ int game_cycle() {
 		wrefresh(info);
 
 		wclear(area);
-		wborder(area, 0, 0, 0, 0, 0, 0, 0, 0);
 		mvwprintw(area, LINES / 2 - y, (COLS - 20) / 2 - x, "x");
 		mvwprintw(area, LINES / 2, (COLS - 20) / 2, "@");
+		wborder(area, 0, 0, 0, 0, 0, 0, 0, 0);
 		wrefresh(area);
 
 		// move(LINES / 2 - y, COLS / 2 - x);
